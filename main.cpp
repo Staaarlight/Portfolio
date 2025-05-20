@@ -1,27 +1,26 @@
 #include <iostream>
 #include <vector>
 #include <cmath>
-#include <algorithm> // для reverse
+#include <algorithm>
 #include <windows.h>
 using namespace std;
 
-    const int n = 31; // длина кодового слова n=q^m-1, q = 2 в данном примере.
-    const int k = 27; // длина слова источника
+    const int n = 31; // РґР»РёРЅР° РєРѕРґРѕРІРѕРіРѕ СЃР»РѕРІР° n=q^m-1, q = 2 РІ РґР°РЅРЅРѕРј РїСЂРёРјРµСЂРµ.
+    const int k = 27; // РґР»РёРЅР° СЃР»РѕРІР° РёСЃС‚РѕС‡РЅРёРєР°
 
-// Это массив со значениями, соответствующими 2 в степени от 0 до 30
+// Р­С‚Рѕ РјР°СЃСЃРёРІ СЃРѕ Р·РЅР°С‡РµРЅРёСЏРјРё, СЃРѕРѕС‚РІРµС‚СЃС‚РІСѓСЋС‰РёРјРё 2 РІ СЃС‚РµРїРµРЅРё РѕС‚ 0 РґРѕ 30
     vector<int> exp_ = {
          1, 2, 4, 8, 16, 5, 10, 20, 13, 26, 17, 7, 14, 28, 29, 31, 27, 19, 3, 6, 12, 24, 21, 15, 30, 25, 23, 11, 22, 9, 18
     };
 
-// Массив, содержащий степени в которые нужно возвести 2, чтобы получить значение индекса. 2^0=1, 2^1=2, 2^4=3, ...
-// Первый элемент массива всегда имеет нулевой индекс, вместо 1000 можно было написать любое число, всё равно пользоваться
-// этим элементом не придётся, так как 2^x=0 запись бессмысленная.
+// РњР°СЃСЃРёРІ, СЃРѕРґРµСЂР¶Р°С‰РёР№ СЃС‚РµРїРµРЅРё РІ РєРѕС‚РѕСЂС‹Рµ РЅСѓР¶РЅРѕ РІРѕР·РІРµСЃС‚Рё 2, С‡С‚РѕР±С‹ РїРѕР»СѓС‡РёС‚СЊ Р·РЅР°С‡РµРЅРёРµ РёРЅРґРµРєСЃР°. 2^0=1, 2^1=2, 2^4=3, ...
+// РџРµСЂРІС‹Р№ СЌР»РµРјРµРЅС‚ РјР°СЃСЃРёРІР° Р·Р°РґР°РґРёРј СЂР°РІРЅС‹Рј РЅСѓР»СЋ.
     vector<int> log_ = {
          0, 0, 1, 18, 2, 5, 19, 11, 3, 29, 6, 27, 20, 8, 12, 23, 4, 10, 30, 17, 7, 22, 28, 26, 21, 25, 9, 16, 13, 14, 24, 15
     };
 
 
-// multNumbers возвращает результат умножения чисел, передаваемых через параметры функции
+// multNumbers РІРѕР·РІСЂР°С‰Р°РµС‚ СЂРµР·СѓР»СЊС‚Р°С‚ СѓРјРЅРѕР¶РµРЅРёСЏ С‡РёСЃРµР», РїРµСЂРµРґР°РІР°РµРјС‹С… С‡РµСЂРµР· РїР°СЂР°РјРµС‚СЂС‹ С„СѓРЅРєС†РёРё
 int multNumbers(int x, int y)
 {
     int mult;
@@ -31,7 +30,7 @@ int multNumbers(int x, int y)
     return mult;
 }
 
-// divisionOfNumbers возвращает результат деления чисел, передаваемых через параметры функции
+// divisionOfNumbers РІРѕР·РІСЂР°С‰Р°РµС‚ СЂРµР·СѓР»СЊС‚Р°С‚ РґРµР»РµРЅРёСЏ С‡РёСЃРµР», РїРµСЂРµРґР°РІР°РµРјС‹С… С‡РµСЂРµР· РїР°СЂР°РјРµС‚СЂС‹ С„СѓРЅРєС†РёРё
 int divisionOfNumbers(int x, int y)
 {
     int division;
@@ -39,7 +38,7 @@ int divisionOfNumbers(int x, int y)
         return 0;
 
     if(y == 0) {
-       cout << "Ошибка. Попытка реализовать деление на ноль" << endl;
+       cout << "РћС€РёР±РєР°. РџРѕРїС‹С‚РєР° СЂРµР°Р»РёР·РѕРІР°С‚СЊ РґРµР»РµРЅРёРµ РЅР° РЅРѕР»СЊ" << endl;
        return -1;
     }
 
@@ -48,8 +47,8 @@ int divisionOfNumbers(int x, int y)
     return division;
 }
 
-// multiplyByXPower(vector<int> vec, unsigned short power) возвращает результат умножения многочлена
-//на х^t, где t передаётся через параметры функции
+// multiplyByXPower(vector<int> vec, unsigned short power) РІРѕР·РІСЂР°С‰Р°РµС‚ СЂРµР·СѓР»СЊС‚Р°С‚ СѓРјРЅРѕР¶РµРЅРёСЏ РјРЅРѕРіРѕС‡Р»РµРЅР°
+//РЅР° С…^t, РіРґРµ t РїРµСЂРµРґР°С‘С‚СЃСЏ С‡РµСЂРµР· РїР°СЂР°РјРµС‚СЂС‹ С„СѓРЅРєС†РёРё
 vector<int> multiplyByXPower(vector<int> vec, unsigned short power)
 {
     reverse(vec.begin(), vec.end());
@@ -61,7 +60,7 @@ vector<int> multiplyByXPower(vector<int> vec, unsigned short power)
     return vec;
 }
 
-// multiplyPolyByNum возвращает произведение многочлена на число.
+// multiplyPolyByNum РІРѕР·РІСЂР°С‰Р°РµС‚ РїСЂРѕРёР·РІРµРґРµРЅРёРµ РјРЅРѕРіРѕС‡Р»РµРЅР° РЅР° С‡РёСЃР»Рѕ.
 vector<int> multiplyPolyByNum(vector<int> poly, int number)
 {
     vector<int> newVec (poly.size(), 0);
@@ -73,14 +72,14 @@ vector<int> multiplyPolyByNum(vector<int> poly, int number)
     return newVec;
 }
 
-// sumOfPolynomials возвращает сумму многочленов.
+// sumOfPolynomials РІРѕР·РІСЂР°С‰Р°РµС‚ СЃСѓРјРјСѓ РјРЅРѕРіРѕС‡Р»РµРЅРѕРІ.
 vector<int> sumOfPolynomials(vector<int> firstPoly, vector<int> secondPoly)
 {
-    unsigned short maxSize = 0; // Чтобы определить длину большего вектора, иначе говоря, степень большего полинома
+    unsigned short maxSize = 0; // Р§С‚РѕР±С‹ РѕРїСЂРµРґРµР»РёС‚СЊ РґР»РёРЅСѓ Р±РѕР»СЊС€РµРіРѕ РІРµРєС‚РѕСЂР°, РёРЅР°С‡Рµ РіРѕРІРѕСЂСЏ, СЃС‚РµРїРµРЅСЊ Р±РѕР»СЊС€РµРіРѕ РїРѕР»РёРЅРѕРјР°
     maxSize = max(firstPoly.size(), secondPoly.size());
     vector<int> sum (maxSize, 0);
 
-    // Приводим векторы к одному размеру, чтобы легче было складывать
+    // РџСЂРёРІРѕРґРёРј РІРµРєС‚РѕСЂС‹ Рє РѕРґРЅРѕРјСѓ СЂР°Р·РјРµСЂСѓ, С‡С‚РѕР±С‹ Р»РµРіС‡Рµ Р±С‹Р»Рѕ СЃРєР»Р°РґС‹РІР°С‚СЊ
     if (firstPoly.size()!= maxSize)
         for (unsigned short i = 0; i < (maxSize - firstPoly.size()); i++)
             firstPoly.push_back(0);
@@ -94,12 +93,12 @@ vector<int> sumOfPolynomials(vector<int> firstPoly, vector<int> secondPoly)
     return sum;
 }
 
-// multOfPolynomials возвращает произведение многочленов
+// multOfPolynomials РІРѕР·РІСЂР°С‰Р°РµС‚ РїСЂРѕРёР·РІРµРґРµРЅРёРµ РјРЅРѕРіРѕС‡Р»РµРЅРѕРІ
 vector<int> multOfPolynomials(vector<int> FirstPoly, vector<int> SecondPoly)
 {
     vector<int> result((FirstPoly.size() + SecondPoly.size() - 1), 0);
 
-    // Ниже каждый коэффициент FirstPoly умножается на каждый коэффициент SecondPoly
+    // РќРёР¶Рµ РєР°Р¶РґС‹Р№ РєРѕСЌС„С„РёС†РёРµРЅС‚ FirstPoly СѓРјРЅРѕР¶Р°РµС‚СЃСЏ РЅР° РєР°Р¶РґС‹Р№ РєРѕСЌС„С„РёС†РёРµРЅС‚ SecondPoly
     for (int j = 0; j < SecondPoly.size(); j++)
         for (int i = 0; i < FirstPoly.size(); i++)
             result[i + j] ^= multNumbers(FirstPoly[i], SecondPoly[j]);
@@ -108,7 +107,7 @@ vector<int> multOfPolynomials(vector<int> FirstPoly, vector<int> SecondPoly)
 }
 
 
- // ExponentiationOfNum(int num, int degree) возведение числа в степень
+ // ExponentiationOfNum(int num, int degree) РІРѕР·РІРµРґРµРЅРёРµ С‡РёСЃР»Р° РІ СЃС‚РµРїРµРЅСЊ
 int ExponentiationOfNum(int num, int degree)
 {
     int result;
@@ -122,7 +121,7 @@ int ExponentiationOfNum(int num, int degree)
 }
 
 
-// findZerosOfPoly(vector<int> poly) возвращает вектор с корнями многочлена, переданного по параметру.
+// findZerosOfPoly(vector<int> poly) РІРѕР·РІСЂР°С‰Р°РµС‚ РІРµРєС‚РѕСЂ СЃ РєРѕСЂРЅСЏРјРё РјРЅРѕРіРѕС‡Р»РµРЅР°, РїРµСЂРµРґР°РЅРЅРѕРіРѕ РїРѕ РїР°СЂР°РјРµС‚СЂСѓ.
 vector<int> findZerosOfPoly(vector<int> poly)
 {
     vector<int> zeros;
@@ -144,16 +143,16 @@ vector<int> findZerosOfPoly(vector<int> poly)
     return zeros;
 }
 
-// Алгоритм Берлекэмпа-Мэсси для поиска полинома локаторов ошибок. Функция выводит false, если ошибки в искажённом кодовом
-// слове не исправить, и true, если ошибки исправить можно. В последнем случае полином локаторов ошибок записывается в
-// передаваемый в параметрах функции вектор desiredLocator.
+// РђР»РіРѕСЂРёС‚Рј Р‘РµСЂР»РµРєСЌРјРїР°-РњСЌСЃСЃРё РґР»СЏ РїРѕРёСЃРєР° РїРѕР»РёРЅРѕРјР° Р»РѕРєР°С‚РѕСЂРѕРІ РѕС€РёР±РѕРє. Р¤СѓРЅРєС†РёСЏ РІС‹РІРѕРґРёС‚ false, РµСЃР»Рё РѕС€РёР±РєРё РІ РёСЃРєР°Р¶С‘РЅРЅРѕРј РєРѕРґРѕРІРѕРј
+// СЃР»РѕРІРµ РЅРµ РёСЃРїСЂР°РІРёС‚СЊ, Рё true, РµСЃР»Рё РѕС€РёР±РєРё РёСЃРїСЂР°РІРёС‚СЊ РјРѕР¶РЅРѕ. Р’ РїРѕСЃР»РµРґРЅРµРј СЃР»СѓС‡Р°Рµ РїРѕР»РёРЅРѕРј Р»РѕРєР°С‚РѕСЂРѕРІ РѕС€РёР±РѕРє Р·Р°РїРёСЃС‹РІР°РµС‚СЃСЏ РІ
+// РїРµСЂРµРґР°РІР°РµРјС‹Р№ РІ РїР°СЂР°РјРµС‚СЂР°С… С„СѓРЅРєС†РёРё РІРµРєС‚РѕСЂ desiredLocator.
 bool CalcLocatorPoly(vector<int> syndromes, vector<int>& desiredLocator)
 {
     bool errorsCanBeFixed = true;
-    unsigned short L = 0, delta = 0;// Текущая длина регистра
-	vector<int> currentLocator, previousLocator, newLocator, multPrevLocatorByX; // Текущий, предыдущий и новый многочлен локаторов ошибок
+    unsigned short L = 0, delta = 0;// РўРµРєСѓС‰Р°СЏ РґР»РёРЅР° СЂРµРіРёСЃС‚СЂР°
+	vector<int> currentLocator, previousLocator, newLocator, multPrevLocatorByX; // РўРµРєСѓС‰РёР№, РїСЂРµРґС‹РґСѓС‰РёР№ Рё РЅРѕРІС‹Р№ РјРЅРѕРіРѕС‡Р»РµРЅ Р»РѕРєР°С‚РѕСЂРѕРІ РѕС€РёР±РѕРє
 
-	currentLocator.push_back(1); // currentLocator = 1 или 1*(х^0)
+	currentLocator.push_back(1); // currentLocator = 1 РёР»Рё 1*(С…^0)
 	previousLocator.push_back(1);
 
 	for (unsigned short i = 1; i <= syndromes.size(); i++)
@@ -162,7 +161,7 @@ bool CalcLocatorPoly(vector<int> syndromes, vector<int>& desiredLocator)
 		for (unsigned short j = 1; j <= L; j++)
             delta ^= multNumbers(currentLocator[j], syndromes[i - 1 - j]);
 
-        multPrevLocatorByX = multiplyByXPower(previousLocator, 1); //Умножение полинома на икс (эквивалентно сдвигу вправо на 1 байт)
+        multPrevLocatorByX = multiplyByXPower(previousLocator, 1); //РЈРјРЅРѕР¶РµРЅРёРµ РїРѕР»РёРЅРѕРјР° РЅР° РёРєСЃ (СЌРєРІРёРІР°Р»РµРЅС‚РЅРѕ СЃРґРІРёРіСѓ РІРїСЂР°РІРѕ РЅР° 1 Р±Р°Р№С‚)
 
 		if (delta != 0)
         {
@@ -180,7 +179,7 @@ bool CalcLocatorPoly(vector<int> syndromes, vector<int>& desiredLocator)
 
 	if ((currentLocator.size()-1) != L)
 	{
-        //cout << "В полученном искажённом кодовом слове слишком много ошибок" << endl;
+        //cout << "Р’ РїРѕР»СѓС‡РµРЅРЅРѕРј РёСЃРєР°Р¶С‘РЅРЅРѕРј РєРѕРґРѕРІРѕРј СЃР»РѕРІРµ СЃР»РёС€РєРѕРј РјРЅРѕРіРѕ РѕС€РёР±РѕРє" << endl;
         errorsCanBeFixed = false;
         return errorsCanBeFixed;
 	}
@@ -189,30 +188,30 @@ bool CalcLocatorPoly(vector<int> syndromes, vector<int>& desiredLocator)
 	return errorsCanBeFixed;
 }
 
-// Умножение вектора на матрицу
+// РЈРјРЅРѕР¶РµРЅРёРµ РІРµРєС‚РѕСЂР° РЅР° РјР°С‚СЂРёС†Сѓ
 vector<int> multVectorByMatrix(vector<int> vec, vector <vector <int>> matrix, int numOfColMatrix, int numOfLinesMatrix)
 {
     vector<int> resVector(numOfColMatrix,0), temp_vec(numOfLinesMatrix,0);
-    // temp_vec - временный вектор, в котором будут храниться произведения пар элементов msg на столбец
-    // матрицы G, в следующем виде: temp_vec[0]=msg[0]*G[0][j], temp_vec[1]=msg[1]*G[1][j], ... . j меняется от 0 до n-1.
+    // temp_vec - РІСЂРµРјРµРЅРЅС‹Р№ РІРµРєС‚РѕСЂ, РІ РєРѕС‚РѕСЂРѕРј Р±СѓРґСѓС‚ С…СЂР°РЅРёС‚СЊСЃСЏ РїСЂРѕРёР·РІРµРґРµРЅРёСЏ РїР°СЂ СЌР»РµРјРµРЅС‚РѕРІ msg РЅР° СЃС‚РѕР»Р±РµС†
+    // РјР°С‚СЂРёС†С‹ G, РІ СЃР»РµРґСѓСЋС‰РµРј РІРёРґРµ: temp_vec[0]=msg[0]*G[0][j], temp_vec[1]=msg[1]*G[1][j], ... . j РјРµРЅСЏРµС‚СЃСЏ РѕС‚ 0 РґРѕ n-1.
 
 		    for (unsigned short j = 0; j < numOfColMatrix; j++)
 		    {
                 for (unsigned short i = 0; i < numOfLinesMatrix; i++)
                     temp_vec[i] = multNumbers(vec[i], matrix[i][j]);
 
-		        // Складываем двоичные представления элементов вектора temp_vec, результат переводим в 10-ую систему счисления
-		        // и в результате получаем i-тый символ кодового слова
+		        // РЎРєР»Р°РґС‹РІР°РµРј РґРІРѕРёС‡РЅС‹Рµ РїСЂРµРґСЃС‚Р°РІР»РµРЅРёСЏ СЌР»РµРјРµРЅС‚РѕРІ РІРµРєС‚РѕСЂР° temp_vec, СЂРµР·СѓР»СЊС‚Р°С‚ РїРµСЂРµРІРѕРґРёРј РІ 10-СѓСЋ СЃРёСЃС‚РµРјСѓ СЃС‡РёСЃР»РµРЅРёСЏ
+		        // Рё РІ СЂРµР·СѓР»СЊС‚Р°С‚Рµ РїРѕР»СѓС‡Р°РµРј i-С‚С‹Р№ СЃРёРјРІРѕР» РєРѕРґРѕРІРѕРіРѕ СЃР»РѕРІР°
 		        for(unsigned short s = 0; s < temp_vec.size(); s++)
                     resVector[j] ^= temp_vec[s];
 
-		        fill(temp_vec.begin(), temp_vec.end(), 0); // Зануляем вектор temp_vec binarySum
+		        fill(temp_vec.begin(), temp_vec.end(), 0); // Р—Р°РЅСѓР»СЏРµРј РІРµРєС‚РѕСЂ temp_vec binarySum
 		    }
 
     return resVector;
 }
 
-// findErrorEvaluatorPoly возвращает полином для оценки ошибок
+// findErrorEvaluatorPoly РІРѕР·РІСЂР°С‰Р°РµС‚ РїРѕР»РёРЅРѕРј РґР»СЏ РѕС†РµРЅРєРё РѕС€РёР±РѕРє
 vector<int> findErrorEvaluatorPoly(vector<int> syndrome, vector<int> locator, int r)
 {
 	vector<int> multOfPoly, errorEvaluatorPoly;
@@ -222,14 +221,14 @@ vector<int> findErrorEvaluatorPoly(vector<int> syndrome, vector<int> locator, in
 	for (int i = 0; i < r; i++) // (syndrome * locator) mod x^(r)
 		errorEvaluatorPoly.push_back(multOfPoly[i]);
 
-    for (int i = 0; i < errorEvaluatorPoly.size(); i++) // вектора вида 10 2 0 0 приводятся к виду 10 2
+    for (int i = 0; i < errorEvaluatorPoly.size(); i++) // РІРµРєС‚РѕСЂР° РІРёРґР° 10 2 0 0 РїСЂРёРІРѕРґСЏС‚СЃСЏ Рє РІРёРґСѓ 10 2
 		if(errorEvaluatorPoly[errorEvaluatorPoly.size()-1] == 0)
             errorEvaluatorPoly.pop_back();
 
 	return errorEvaluatorPoly;
 }
 
-// findDerivativeOfPoly возвращает производную многочлена
+// findDerivativeOfPoly РІРѕР·РІСЂР°С‰Р°РµС‚ РїСЂРѕРёР·РІРѕРґРЅСѓСЋ РјРЅРѕРіРѕС‡Р»РµРЅР°
 vector<int> findDerivativeOfPoly(vector<int> poly)
 {
     vector<int> derivativeOfPoly(poly.size()-1, 0);
@@ -238,7 +237,7 @@ vector<int> findDerivativeOfPoly(vector<int> poly)
         if (poly[i] != 0)
             derivativeOfPoly[i-1] = poly[i];
 
-    for (int i = 0; i < derivativeOfPoly.size(); i++) // вектора вида 10 2 0 0 приводятся к виду 10 2
+    for (int i = 0; i < derivativeOfPoly.size(); i++) // РІРµРєС‚РѕСЂР° РІРёРґР° 10 2 0 0 РїСЂРёРІРѕРґСЏС‚СЃСЏ Рє РІРёРґСѓ 10 2
 		if(derivativeOfPoly[derivativeOfPoly.size()-1] == 0)
             derivativeOfPoly.pop_back();
 
@@ -247,7 +246,7 @@ vector<int> findDerivativeOfPoly(vector<int> poly)
 }
 
 
-// valueOfPolyAtThePoint возвращает значение многочлена от известного x
+// valueOfPolyAtThePoint РІРѕР·РІСЂР°С‰Р°РµС‚ Р·РЅР°С‡РµРЅРёРµ РјРЅРѕРіРѕС‡Р»РµРЅР° РѕС‚ РёР·РІРµСЃС‚РЅРѕРіРѕ x
 int valueOfPolyAtThePoint(vector<int> poly, int x)
 {
     int result = poly[0];
@@ -259,7 +258,7 @@ int valueOfPolyAtThePoint(vector<int> poly, int x)
 }
 
 
-// findValueOfErrors возвращает вектор со значениями ошибок, допущенных в искажённом кодовом слове.
+// findValueOfErrors РІРѕР·РІСЂР°С‰Р°РµС‚ РІРµРєС‚РѕСЂ СЃРѕ Р·РЅР°С‡РµРЅРёСЏРјРё РѕС€РёР±РѕРє, РґРѕРїСѓС‰РµРЅРЅС‹С… РІ РёСЃРєР°Р¶С‘РЅРЅРѕРј РєРѕРґРѕРІРѕРј СЃР»РѕРІРµ.
 vector<int> findValueOfErrors(vector<int> errorEvaluatorPoly, vector<int> derivativeOfLocator, vector<int> zerosOfLocator)
 {
     vector<int> valueOfErrors(zerosOfLocator.size());
@@ -271,7 +270,7 @@ vector<int> findValueOfErrors(vector<int> errorEvaluatorPoly, vector<int> deriva
     return valueOfErrors;
 }
 
-// errorPoly возвращает полином, который способен исправить ошибки в искажённом кодовом слове.
+// errorPoly РІРѕР·РІСЂР°С‰Р°РµС‚ РїРѕР»РёРЅРѕРј, РєРѕС‚РѕСЂС‹Р№ СЃРїРѕСЃРѕР±РµРЅ РёСЃРїСЂР°РІРёС‚СЊ РѕС€РёР±РєРё РІ РёСЃРєР°Р¶С‘РЅРЅРѕРј РєРѕРґРѕРІРѕРј СЃР»РѕРІРµ.
 vector<int> findErrorPoly(vector<int> valueOfErrors, vector<int> revZerosOfLocator)
 {
     vector<int> errorPoly(n, 0);
@@ -282,7 +281,7 @@ vector<int> findErrorPoly(vector<int> valueOfErrors, vector<int> revZerosOfLocat
     return errorPoly;
 }
 
-// fixDisCodeword возвращает исправленное кодовое слово, если его можно исправить.
+// fixDisCodeword РІРѕР·РІСЂР°С‰Р°РµС‚ РёСЃРїСЂР°РІР»РµРЅРЅРѕРµ РєРѕРґРѕРІРѕРµ СЃР»РѕРІРѕ, РµСЃР»Рё РµРіРѕ РјРѕР¶РЅРѕ РёСЃРїСЂР°РІРёС‚СЊ.
 vector<int> fixDisCodeword(vector<int> disCodeword, vector<int> errorPoly)
 {
     vector<int> correctCodeword(n, 0);
@@ -295,15 +294,15 @@ vector<int> fixDisCodeword(vector<int> disCodeword, vector<int> errorPoly)
 
 vector<int> serchAndFixErrors(vector<int> syndrom, vector<int> someCodeword, int r)
 {
-    vector<int> locator; // Вектор, представляющий из себя ногочлен локаторов ошибок в искажённом кодовом слове
-    vector<int> zerosOfLocator; // Вектор с корнями полинома локаторов ошибок
-    vector<int> revZerosOfLocator; // Вектор с элементами, обратными к корням полинома локаторов ошибок
+    vector<int> locator; // Р’РµРєС‚РѕСЂ, РїСЂРµРґСЃС‚Р°РІР»СЏСЋС‰РёР№ РёР· СЃРµР±СЏ РЅРѕРіРѕС‡Р»РµРЅ Р»РѕРєР°С‚РѕСЂРѕРІ РѕС€РёР±РѕРє РІ РёСЃРєР°Р¶С‘РЅРЅРѕРј РєРѕРґРѕРІРѕРј СЃР»РѕРІРµ
+    vector<int> zerosOfLocator; // Р’РµРєС‚РѕСЂ СЃ РєРѕСЂРЅСЏРјРё РїРѕР»РёРЅРѕРјР° Р»РѕРєР°С‚РѕСЂРѕРІ РѕС€РёР±РѕРє
+    vector<int> revZerosOfLocator; // Р’РµРєС‚РѕСЂ СЃ СЌР»РµРјРµРЅС‚Р°РјРё, РѕР±СЂР°С‚РЅС‹РјРё Рє РєРѕСЂРЅСЏРј РїРѕР»РёРЅРѕРјР° Р»РѕРєР°С‚РѕСЂРѕРІ РѕС€РёР±РѕРє
     bool locatorIsFound;
-    vector<int> correctCodeword; // Исправленное кодовое слово
-    vector<int> errorEvalPoly; // Омега(x)
-    vector<int> derivativeOfLocator; // Производная лямбда(x)
-    vector<int> valueOfErrors; // Вектор со значениями ошибок в искажённом кодовом слове
-    vector<int> polyToFixCodeword; // Полином для исправления ошибок в искажённом кодовом слове
+    vector<int> correctCodeword; // РСЃРїСЂР°РІР»РµРЅРЅРѕРµ РєРѕРґРѕРІРѕРµ СЃР»РѕРІРѕ
+    vector<int> errorEvalPoly; // РћРјРµРіР°(x)
+    vector<int> derivativeOfLocator; // РџСЂРѕРёР·РІРѕРґРЅР°СЏ Р»СЏРјР±РґР°(x)
+    vector<int> valueOfErrors; // Р’РµРєС‚РѕСЂ СЃРѕ Р·РЅР°С‡РµРЅРёСЏРјРё РѕС€РёР±РѕРє РІ РёСЃРєР°Р¶С‘РЅРЅРѕРј РєРѕРґРѕРІРѕРј СЃР»РѕРІРµ
+    vector<int> polyToFixCodeword; // РџРѕР»РёРЅРѕРј РґР»СЏ РёСЃРїСЂР°РІР»РµРЅРёСЏ РѕС€РёР±РѕРє РІ РёСЃРєР°Р¶С‘РЅРЅРѕРј РєРѕРґРѕРІРѕРј СЃР»РѕРІРµ
 
 
 
@@ -317,9 +316,7 @@ vector<int> serchAndFixErrors(vector<int> syndrom, vector<int> someCodeword, int
 
 
     for (int i = 0; i < zerosOfLocator.size(); i++)
-    {
         revZerosOfLocator.push_back(ExponentiationOfNum(zerosOfLocator[i], -1));
-    }
 
     errorEvalPoly = findErrorEvaluatorPoly(syndrom, locator, r);
 
@@ -339,53 +336,53 @@ int main()
     SetConsoleCP(1251);
     SetConsoleOutputCP(1251);
 
-    int r = n-k; // количество избыточных символов
-    int d = r+1; // Минимальное расстояние Хэмминга
-    //const int m = 5; // Это степень неприводимого многочлена
-// 2=00010=x - это альфа, то есть примитивный элемент данного поля Галуа.
+    int r = n-k; // РєРѕР»РёС‡РµСЃС‚РІРѕ РёР·Р±С‹С‚РѕС‡РЅС‹С… СЃРёРјРІРѕР»РѕРІ
+    int d = r+1; // РњРёРЅРёРјР°Р»СЊРЅРѕРµ СЂР°СЃСЃС‚РѕСЏРЅРёРµ РҐСЌРјРјРёРЅРіР°
+    //const int m = 5; // Р­С‚Рѕ СЃС‚РµРїРµРЅСЊ РЅРµРїСЂРёРІРѕРґРёРјРѕРіРѕ РјРЅРѕРіРѕС‡Р»РµРЅР°
+// 2=00010=x - СЌС‚Рѕ Р°Р»СЊС„Р°, С‚Рѕ РµСЃС‚СЊ РїСЂРёРјРёС‚РёРІРЅС‹Р№ СЌР»РµРјРµРЅС‚ РґР°РЅРЅРѕРіРѕ РїРѕР»СЏ Р“Р°Р»СѓР°.
 
-// Неприводимый многочлен равен x^5+x^2+1 = 101001 vector <int> irreduciblePoly = {1,0,1,0,0,1};
+// РќРµРїСЂРёРІРѕРґРёРјС‹Р№ РјРЅРѕРіРѕС‡Р»РµРЅ СЂР°РІРµРЅ x^5+x^2+1 = 101001 vector <int> irreduciblePoly = {1,0,1,0,0,1};
 
-// Порождающий многочлен g(x)= x^4+30x^3+6x^2+9x+17
+// РџРѕСЂРѕР¶РґР°СЋС‰РёР№ РјРЅРѕРіРѕС‡Р»РµРЅ g(x)= x^4+30x^3+6x^2+9x+17
     vector <int> generetedPoly = {17,9,6,30,1};
 
-    vector<int> encoded_message; // Закодированное сообщение
+    vector<int> encoded_message; // Р—Р°РєРѕРґРёСЂРѕРІР°РЅРЅРѕРµ СЃРѕРѕР±С‰РµРЅРёРµ
     encoded_message.reserve(n);
 
-    vector <vector <int>> G(k, vector <int> (n)); // Порождающая матрица
-    vector <vector <int>> H(n, vector <int> (r)); // Проверочная матрица
-    vector <vector <int>> decodingMatrix(n, vector <int> (k)); // Для декодирования кодовых слов
-    vector<char> alphabet = {' ', 'а', 'б', 'в', 'г', 'д', 'е', 'ж', 'з', 'и', 'й', 'к', 'л', 'м', 'н', 'о', 'п',
-    'р', 'с', 'т', 'у', 'ф', 'х', 'ц', 'ч', 'ш', 'щ', 'ь', 'ы', 'э', 'ю', 'я'};
-    string symbolicMessage; // Символьное сообщение, вводимое с консоли
-    vector<int> message(k); // message - слово источника, состоящее из элементов поля Галуа
-    string DecodedSymbMessage; // Декодированное сообщение, переведённое в символы
-    vector<int> locator; // Вектор, представляющий из себя ногочлен локаторов ошибок в искажённом кодовом слове
-    string stringCodeword; // Для записи с консоли кодового слова, которе предстоит декодировать
-    vector<int> someCodeword; // Кодовое слово stringCodeword переведённое в тип int
-    int valueCodeword = 0; // Для преобразования stringCodeword в вектор типа int
-    bool syndromOfZeros = true; // Для проверки на наличие ошибок в введённом с консоли кодовом слове
-    vector<int> decodedMessage; // Декодированное сообщение, состоящее из символов поля Галуа
-    vector<int> correctCodeword; // Исправленное кодовое слово
-    vector<int> syndrom; // Синдром
-    vector<int> zerosOfGenPoly; // Корни порождающего многочлена
+    vector <vector <int>> G(k, vector <int> (n)); // РџРѕСЂРѕР¶РґР°СЋС‰Р°СЏ РјР°С‚СЂРёС†Р°
+    vector <vector <int>> H(n, vector <int> (r)); // РџСЂРѕРІРµСЂРѕС‡РЅР°СЏ РјР°С‚СЂРёС†Р°
+    vector <vector <int>> decodingMatrix(n, vector <int> (k)); // Р”Р»СЏ РґРµРєРѕРґРёСЂРѕРІР°РЅРёСЏ РєРѕРґРѕРІС‹С… СЃР»РѕРІ
+    vector<char> alphabet = {' ', 'Р°', 'Р±', 'РІ', 'Рі', 'Рґ', 'Рµ', 'Р¶', 'Р·', 'Рё', 'Р№', 'Рє', 'Р»', 'Рј', 'РЅ', 'Рѕ', 'Рї',
+    'СЂ', 'СЃ', 'С‚', 'Сѓ', 'С„', 'С…', 'С†', 'С‡', 'С€', 'С‰', 'СЊ', 'С‹', 'СЌ', 'СЋ', 'СЏ'};
+    string symbolicMessage; // РЎРёРјРІРѕР»СЊРЅРѕРµ СЃРѕРѕР±С‰РµРЅРёРµ, РІРІРѕРґРёРјРѕРµ СЃ РєРѕРЅСЃРѕР»Рё
+    vector<int> message(k); // message - СЃР»РѕРІРѕ РёСЃС‚РѕС‡РЅРёРєР°, СЃРѕСЃС‚РѕСЏС‰РµРµ РёР· СЌР»РµРјРµРЅС‚РѕРІ РїРѕР»СЏ Р“Р°Р»СѓР°
+    string DecodedSymbMessage; // Р”РµРєРѕРґРёСЂРѕРІР°РЅРЅРѕРµ СЃРѕРѕР±С‰РµРЅРёРµ, РїРµСЂРµРІРµРґС‘РЅРЅРѕРµ РІ СЃРёРјРІРѕР»С‹
+    vector<int> locator; // Р’РµРєС‚РѕСЂ, РїСЂРµРґСЃС‚Р°РІР»СЏСЋС‰РёР№ РёР· СЃРµР±СЏ РЅРѕРіРѕС‡Р»РµРЅ Р»РѕРєР°С‚РѕСЂРѕРІ РѕС€РёР±РѕРє РІ РёСЃРєР°Р¶С‘РЅРЅРѕРј РєРѕРґРѕРІРѕРј СЃР»РѕРІРµ
+    string stringCodeword; // Р”Р»СЏ Р·Р°РїРёСЃРё СЃ РєРѕРЅСЃРѕР»Рё РєРѕРґРѕРІРѕРіРѕ СЃР»РѕРІР°, РєРѕС‚РѕСЂРµ РїСЂРµРґСЃС‚РѕРёС‚ РґРµРєРѕРґРёСЂРѕРІР°С‚СЊ
+    vector<int> someCodeword; // РљРѕРґРѕРІРѕРµ СЃР»РѕРІРѕ stringCodeword РїРµСЂРµРІРµРґС‘РЅРЅРѕРµ РІ С‚РёРї int
+    int valueCodeword = 0; // Р”Р»СЏ РїСЂРµРѕР±СЂР°Р·РѕРІР°РЅРёСЏ stringCodeword РІ РІРµРєС‚РѕСЂ С‚РёРїР° int
+    bool syndromOfZeros = true; // Р”Р»СЏ РїСЂРѕРІРµСЂРєРё РЅР° РЅР°Р»РёС‡РёРµ РѕС€РёР±РѕРє РІ РІРІРµРґС‘РЅРЅРѕРј СЃ РєРѕРЅСЃРѕР»Рё РєРѕРґРѕРІРѕРј СЃР»РѕРІРµ
+    vector<int> decodedMessage; // Р”РµРєРѕРґРёСЂРѕРІР°РЅРЅРѕРµ СЃРѕРѕР±С‰РµРЅРёРµ, СЃРѕСЃС‚РѕСЏС‰РµРµ РёР· СЃРёРјРІРѕР»РѕРІ РїРѕР»СЏ Р“Р°Р»СѓР°
+    vector<int> correctCodeword; // РСЃРїСЂР°РІР»РµРЅРЅРѕРµ РєРѕРґРѕРІРѕРµ СЃР»РѕРІРѕ
+    vector<int> syndrom; // РЎРёРЅРґСЂРѕРј
+    vector<int> zerosOfGenPoly; // РљРѕСЂРЅРё РїРѕСЂРѕР¶РґР°СЋС‰РµРіРѕ РјРЅРѕРіРѕС‡Р»РµРЅР°
 
-    // Задаём порождающую матрицу (2 конструкция кода РС)
-    for (unsigned short i = 0; i < k; i++) // кол-во строк
-        for (unsigned short j = 0; j < n; j++) // кол-во столбцов
+    // Р—Р°РґР°С‘Рј РїРѕСЂРѕР¶РґР°СЋС‰СѓСЋ РјР°С‚СЂРёС†Сѓ (2 РєРѕРЅСЃС‚СЂСѓРєС†РёСЏ РєРѕРґР° Р РЎ)
+    for (unsigned short i = 0; i < k; i++) // РєРѕР»-РІРѕ СЃС‚СЂРѕРє
+        for (unsigned short j = 0; j < n; j++) // РєРѕР»-РІРѕ СЃС‚РѕР»Р±С†РѕРІ
             G[i][j] = ExponentiationOfNum(exp_[j],i);
 
-    // Задаём матрицу для декодирования (все элементы возводятся в -1 степень)
+    // Р—Р°РґР°С‘Рј РјР°С‚СЂРёС†Сѓ РґР»СЏ РґРµРєРѕРґРёСЂРѕРІР°РЅРёСЏ (РІСЃРµ СЌР»РµРјРµРЅС‚С‹ РІРѕР·РІРѕРґСЏС‚СЃСЏ РІ -1 СЃС‚РµРїРµРЅСЊ)
     for (unsigned short i = 0; i < n; i++)
         for (unsigned short j = 0; j < k; j++)
             decodingMatrix[i][j] = ExponentiationOfNum(exp_[j], n-i);
 
 
-    // Находим корни порождающего многочлена для построения проверочной матрицы
+    // РќР°С…РѕРґРёРј РєРѕСЂРЅРё РїРѕСЂРѕР¶РґР°СЋС‰РµРіРѕ РјРЅРѕРіРѕС‡Р»РµРЅР° РґР»СЏ РїРѕСЃС‚СЂРѕРµРЅРёСЏ РїСЂРѕРІРµСЂРѕС‡РЅРѕР№ РјР°С‚СЂРёС†С‹
     zerosOfGenPoly = findZerosOfPoly(generetedPoly);
 
 
-    // Задаём проверочную матрицу (2 конструкция кода РС)
+    // Р—Р°РґР°С‘Рј РїСЂРѕРІРµСЂРѕС‡РЅСѓСЋ РјР°С‚СЂРёС†Сѓ (2 РєРѕРЅСЃС‚СЂСѓРєС†РёСЏ РєРѕРґР° Р РЎ)
     for (unsigned short i = 0; i < n; i++)
         for (unsigned short j = 0; j < r; j++)
             H[i][j] = ExponentiationOfNum(zerosOfGenPoly[j],i);
@@ -393,7 +390,7 @@ int main()
 
 
 newSymMessage:
-    cout << "Введите сообщение длины 27, используя символы русского алфавита (за исключением ё и ъ) и пробел:\n";
+    cout << "Р’РІРµРґРёС‚Рµ СЃРѕРѕР±С‰РµРЅРёРµ РґР»РёРЅС‹ 27, РёСЃРїРѕР»СЊР·СѓСЏ СЃРёРјРІРѕР»С‹ СЂСѓСЃСЃРєРѕРіРѕ Р°Р»С„Р°РІРёС‚Р° (Р·Р° РёСЃРєР»СЋС‡РµРЅРёРµРј С‘ Рё СЉ) Рё РїСЂРѕР±РµР»:\n";
     getline(cin, symbolicMessage);
 
     if (symbolicMessage.size() < k)
@@ -401,36 +398,36 @@ newSymMessage:
             symbolicMessage.push_back(' ');
     else if(symbolicMessage.size() > k)
         {
-            cout << "\nРазмер введённого сообщения превышает допустимый\n\n";
+            cout << "\nР Р°Р·РјРµСЂ РІРІРµРґС‘РЅРЅРѕРіРѕ СЃРѕРѕР±С‰РµРЅРёСЏ РїСЂРµРІС‹С€Р°РµС‚ РґРѕРїСѓСЃС‚РёРјС‹Р№\n\n";
             goto newSymMessage;
         }
 
-    // Переводим символьное сообщение в слово источника с элементами из поля Галуа
+    // РџРµСЂРµРІРѕРґРёРј СЃРёРјРІРѕР»СЊРЅРѕРµ СЃРѕРѕР±С‰РµРЅРёРµ РІ СЃР»РѕРІРѕ РёСЃС‚РѕС‡РЅРёРєР° СЃ СЌР»РµРјРµРЅС‚Р°РјРё РёР· РїРѕР»СЏ Р“Р°Р»СѓР°
     for (int i = 0; i < symbolicMessage.size(); i++)
         for (int j = 0; j < alphabet.size(); j++)
             if(symbolicMessage[i] == alphabet[j])
                message[i] = j;
 
 
-    // Выводим слово источника с элементами из поля Галуа
-    cout << "\nВаше слово:\n";
+    // Р’С‹РІРѕРґРёРј СЃР»РѕРІРѕ РёСЃС‚РѕС‡РЅРёРєР° СЃ СЌР»РµРјРµРЅС‚Р°РјРё РёР· РїРѕР»СЏ Р“Р°Р»СѓР°
+    cout << "\nР’Р°С€Рµ СЃР»РѕРІРѕ:\n";
     for (auto x : message)
         cout << x << " ";
 
-    // Кодируем слово источника
-    cout << "\nКодовое слово:\n";
+    // РљРѕРґРёСЂСѓРµРј СЃР»РѕРІРѕ РёСЃС‚РѕС‡РЅРёРєР°
+    cout << "\nРљРѕРґРѕРІРѕРµ СЃР»РѕРІРѕ:\n";
     encoded_message = multVectorByMatrix(message, G, n, k);
     for (int i = 0; i < encoded_message.size(); i++)
          cout << encoded_message[i] << " ";
     cout << endl;
 
 
-    // someCodeword - кодовое слово, которое вводит пользователь. Потенциально искажённое.
+    // someCodeword - РєРѕРґРѕРІРѕРµ СЃР»РѕРІРѕ, РєРѕС‚РѕСЂРѕРµ РІРІРѕРґРёС‚ РїРѕР»СЊР·РѕРІР°С‚РµР»СЊ. РџРѕС‚РµРЅС†РёР°Р»СЊРЅРѕ РёСЃРєР°Р¶С‘РЅРЅРѕРµ.
 newStrCodeword:
-    cout << "\nВведите слово длины 31, которое хотите декодировать:\n";
+    cout << "\nР’РІРµРґРёС‚Рµ СЃР»РѕРІРѕ РґР»РёРЅС‹ 31, РєРѕС‚РѕСЂРѕРµ С…РѕС‚РёС‚Рµ РґРµРєРѕРґРёСЂРѕРІР°С‚СЊ:\n";
     getline(cin, stringCodeword);
 
-    // ввод с консоли кодового слова для дальнейшего его декодирования
+    // РІРІРѕРґ СЃ РєРѕРЅСЃРѕР»Рё РєРѕРґРѕРІРѕРіРѕ СЃР»РѕРІР° РґР»СЏ РґР°Р»СЊРЅРµР№С€РµРіРѕ РµРіРѕ РґРµРєРѕРґРёСЂРѕРІР°РЅРёСЏ
     for (int i = 0; i < stringCodeword.size()-1; i++)
     {
         if(stringCodeword[i] != ' ' & stringCodeword[i+1] != ' ')
@@ -457,17 +454,17 @@ newStrCodeword:
 
 
     if (someCodeword.size() != n) {
-        cout << "\nРазмер введённого кодового слова не равен 31\n\n";
+        cout << "\nР Р°Р·РјРµСЂ РІРІРµРґС‘РЅРЅРѕРіРѕ РєРѕРґРѕРІРѕРіРѕ СЃР»РѕРІР° РЅРµ СЂР°РІРµРЅ 31\n\n";
         someCodeword.clear();
         goto newStrCodeword;
     }
 
 
-    // Считаем синдром введённого кодового слова
+    // РЎС‡РёС‚Р°РµРј СЃРёРЅРґСЂРѕРј РІРІРµРґС‘РЅРЅРѕРіРѕ РєРѕРґРѕРІРѕРіРѕ СЃР»РѕРІР°
     syndrom = multVectorByMatrix(someCodeword, H, r, n);
 
 
-    // Проверяем, является ли синдром введённого с консоли кодового слова нулевым
+    // РџСЂРѕРІРµСЂСЏРµРј, СЏРІР»СЏРµС‚СЃСЏ Р»Рё СЃРёРЅРґСЂРѕРј РІРІРµРґС‘РЅРЅРѕРіРѕ СЃ РєРѕРЅСЃРѕР»Рё РєРѕРґРѕРІРѕРіРѕ СЃР»РѕРІР° РЅСѓР»РµРІС‹Рј
     for (int i = 0; i < syndrom.size(); i++)
          if(syndrom[i]!=0)
          {
@@ -482,21 +479,21 @@ newStrCodeword:
     if (!correctCodeword.empty())
     {
 
-    cout << "\nКодовое слово (после исправления ошибок):\n";
+    cout << "\nРљРѕРґРѕРІРѕРµ СЃР»РѕРІРѕ (РїРѕСЃР»Рµ РёСЃРїСЂР°РІР»РµРЅРёСЏ РѕС€РёР±РѕРє):\n";
     for (int i = 0; i < correctCodeword.size(); i++)
         cout << correctCodeword[i] << " ";
 
-    // Декодируем сообщение
+    // Р”РµРєРѕРґРёСЂСѓРµРј СЃРѕРѕР±С‰РµРЅРёРµ
     decodedMessage = multVectorByMatrix(correctCodeword, decodingMatrix, k, n);
-    cout << "\nДекодированное сообщение:\n";
+    cout << "\nР”РµРєРѕРґРёСЂРѕРІР°РЅРЅРѕРµ СЃРѕРѕР±С‰РµРЅРёРµ:\n";
     for (int i = 0; i < decodedMessage.size(); i++)
          cout << decodedMessage[i] << " ";
 
-    // Переводим сообщений на символьный язык
+    // РџРµСЂРµРІРѕРґРёРј СЃРѕРѕР±С‰РµРЅРёР№ РЅР° СЃРёРјРІРѕР»СЊРЅС‹Р№ СЏР·С‹Рє
     for (int i = 0; i < decodedMessage.size(); i++)
          DecodedSymbMessage.push_back(alphabet[decodedMessage[i]]);
 
-    cout << "\nДекодированное символьное сообщение:\n";
+    cout << "\nР”РµРєРѕРґРёСЂРѕРІР°РЅРЅРѕРµ СЃРёРјРІРѕР»СЊРЅРѕРµ СЃРѕРѕР±С‰РµРЅРёРµ:\n";
     for (int i = 0; i < DecodedSymbMessage.size(); i++)
          cout << DecodedSymbMessage[i];
     cout << endl;
@@ -504,24 +501,24 @@ newStrCodeword:
     }
     else if (correctCodeword.empty())
     {
-        cout << "В введённом кодовом слове ошибки не могут быть исправлены.";
+        cout << "Р’ РІРІРµРґС‘РЅРЅРѕРј РєРѕРґРѕРІРѕРј СЃР»РѕРІРµ РѕС€РёР±РєРё РЅРµ РјРѕРіСѓС‚ Р±С‹С‚СЊ РёСЃРїСЂР°РІР»РµРЅС‹.";
     }
   }
   else {
     correctCodeword = someCodeword;
 
-    // Декодируем сообщение
+    // Р”РµРєРѕРґРёСЂСѓРµРј СЃРѕРѕР±С‰РµРЅРёРµ
     decodedMessage = multVectorByMatrix(correctCodeword, decodingMatrix, k, n);
-    cout << "Декодированное сообщение:\t";
+    cout << "Р”РµРєРѕРґРёСЂРѕРІР°РЅРЅРѕРµ СЃРѕРѕР±С‰РµРЅРёРµ:\t";
     for (int i = 0; i < decodedMessage.size(); i++)
          cout << decodedMessage[i] << " ";
     cout << endl;
 
-    // Переводим сообщения на символьный язык
+    // РџРµСЂРµРІРѕРґРёРј СЃРѕРѕР±С‰РµРЅРёСЏ РЅР° СЃРёРјРІРѕР»СЊРЅС‹Р№ СЏР·С‹Рє
     for (int i = 0; i < decodedMessage.size(); i++)
          DecodedSymbMessage.push_back(alphabet[decodedMessage[i]]);
 
-    cout << "Декодированное символьное сообщение:\t";
+    cout << "Р”РµРєРѕРґРёСЂРѕРІР°РЅРЅРѕРµ СЃРёРјРІРѕР»СЊРЅРѕРµ СЃРѕРѕР±С‰РµРЅРёРµ:\t";
     for (int i = 0; i < DecodedSymbMessage.size(); i++)
          cout << DecodedSymbMessage[i];
     cout << endl;
