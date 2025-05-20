@@ -1,0 +1,8 @@
+# depslib dependency file v1.0
+1733434131 source:d:\codeblocksprojects\rs1\main.cpp
+	<iostream>
+	<vector>
+	<cmath>
+	<algorithm>
+	<windows.h>
+
